@@ -1,0 +1,16 @@
+[package]
+name = "hello_world"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+libloading = "0.8.8"
+opencv = { version = "0.95.1" }
+windows = { version = "0.61.3", features = ["Win32", "Win32_UI", "Win32_UI_WindowsAndMessaging"] }
+
+[profile.release]
+strip = true# 移除调试信息
+opt-level = "z"# 最高级别体积优化
+lto = true# 全局链接优化（显著增加编译时间）
+codegen-units = 1# 提升优化密度
+panic = "abort"# 禁用栈展开信息（注意：影响错误处理）
