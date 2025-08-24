@@ -18,7 +18,7 @@ impl DxgiCapture {
         let (_left, _top, width, height) = rect;
         // 这里vec和res用了同一块内存,所以得返回出去
         let vec = vec![0u8; (width * height * 4) as usize];
-        self.dxgi.grab(&vec, 0, 0, width, height);
+        self.dxgi.grab(&vec, _left, _top, width, height);
         let mat = unsafe {
             Mat::new_size_with_data_unsafe(
                 Size::new(width, height),
@@ -37,7 +37,7 @@ impl DxgiCapture {
         let (_left, _top, width, height) = rect;
         // 这里vec和res用了同一块内存,所以得返回出去
         let vec = vec![0u8; (width * height * 4) as usize];
-        self.dxgi.grab(&vec, 0, 0, width, height);
+        self.dxgi.grab(&vec, _left, _top, width, height);
         let mat = unsafe {
             Mat::new_size_with_data_unsafe(
                 Size::new(width, height),
@@ -59,7 +59,7 @@ impl DxgiCapture {
         highgui::wait_key(0).expect("wait_key failed");
     }
 
-    pub fn destory(&self) {
+    pub fn destroy(&self) {
         self.dxgi.destroy()
     }
 }
